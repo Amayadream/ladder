@@ -3,7 +3,6 @@ package com.amayadream.retrofit2.client;
 import com.amayadream.retrofit2.api.ApiService;
 import com.amayadream.retrofit2.api.result.Results;
 import retrofit2.Call;
-import retrofit2.Response;
 
 import java.io.IOException;
 
@@ -13,6 +12,8 @@ import java.io.IOException;
  */
 public class SampleClient extends AbstractClient {
 
+    private ApiService apiService;
+
     public SampleClient(String baseUrl) {
         super(baseUrl);
     }
@@ -21,13 +22,14 @@ public class SampleClient extends AbstractClient {
         super(baseUrl, timeoutSeconds);
     }
 
-    public Results getInfo(String message) throws IOException {
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<Results> call = apiService.getInfo("hello");
-        Response<Results> response = call.execute();
-        if (!response.isSuccessful()) {
-            throw new RuntimeException(String.format("request unsuccessful, http status: %s", response.code()));
-        }
-        return response.body();
+    @Override
+    public void createService() {
+        this.apiService = this.retrofit.create(ApiService.class);
     }
+
+    public Results getInfo(String message) throws IOException {
+        Call<Results> call = apiService.getInfo(message);
+        return execute(call);
+    }
+
 }
