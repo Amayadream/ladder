@@ -8,6 +8,8 @@ public enum  ResultConstant {
 
     SUCCESS(0, "ok"),
 
+    SYSTEM_BUSY(1, "系统繁忙, 请稍后重试!"),
+
     ;
 
     public long code;

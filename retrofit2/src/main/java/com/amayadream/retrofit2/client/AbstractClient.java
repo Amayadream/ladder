@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @author :  Amayadream
  * @date :  2017.10.11 22:26
  */
-public abstract class AbstractClient<T> {
+public abstract class AbstractClient {
 
     protected Retrofit retrofit;
     private long timeoutSeconds = 10;
