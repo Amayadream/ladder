@@ -2,6 +2,7 @@ package com.amayadream.retrofit2.client;
 
 import com.amayadream.retrofit2.api.result.Results;
 import com.amayadream.retrofit2.client.converter.FastJsonConverterFactory;
+import com.amayadream.retrofit2.client.interceptor.HeaderInterceptor;
 import okhttp3.OkHttpClient;
 import org.springframework.util.StringUtils;
 import retrofit2.Call;
@@ -64,6 +65,7 @@ public abstract class AbstractClient {
         }
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .addInterceptor(new HeaderInterceptor())
                 .build();
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
