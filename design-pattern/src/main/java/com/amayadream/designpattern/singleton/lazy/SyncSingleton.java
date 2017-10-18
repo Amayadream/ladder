@@ -22,5 +22,4 @@ public class SyncSingleton {
         return instance;
     }
 
-
 }
