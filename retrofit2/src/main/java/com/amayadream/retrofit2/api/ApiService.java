@@ -12,6 +12,8 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @GET(value = "sample/get_info")
-    Call<Results> getInfo(@Query(value = "message") String message);
+    Call<Results> getInfo(
+            @Query(value = "message") String message
+    );
 
 }

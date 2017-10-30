@@ -1,7 +1,6 @@
 package com.amayadream.retrofit2.service;
 
 import com.amayadream.retrofit2.api.result.Results;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SampleController {
 
     @RequestMapping(value = "/get_info", method = RequestMethod.GET)
-    public Results getInfo(String message, @RequestHeader("Demo-Header") String demoHeader) {
-        System.out.println(demoHeader);
+    public Results getInfo(String message) {
         return Results.ok(message);
     }
 

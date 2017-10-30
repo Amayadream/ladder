@@ -1,5 +1,6 @@
 package com.amayadream.retrofit2.api.result;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.Serializable;
@@ -65,11 +66,7 @@ public class Results implements Serializable {
 
     @Override
     public String toString() {
-        return "Results{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                '}';
+        return JSON.toJSONString(this);
     }
 
     public Long getCode() {

@@ -10,6 +10,10 @@ public enum  ResultConstant {
 
     SYSTEM_BUSY(1, "系统繁忙, 请稍后重试!"),
 
+    SIGN_EMPTY(1000, "签名信息缺失"),
+    SIGN_ERROR(1001, "签名校验失败"),
+    REQUEST_TIMEOUT(1002, "请求过期"),
+
     ;
 
     public long code;
