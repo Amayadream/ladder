@@ -1,9 +1,8 @@
 package com.amayadream.retrofit2.service.interceptor;
 
-import com.alibaba.fastjson.JSON;
 import com.amayadream.retrofit2.api.result.ResultConstant;
 import com.amayadream.retrofit2.api.result.Results;
-import com.amayadream.retrofit2.util.SignUtils;
+import com.amayadream.retrofit2.util.SignHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -48,10 +47,11 @@ public class SignInterceptor implements HandlerInterceptor {
         }
 
         //3.获取参数Map
-        TreeMap<String, String[]> paramMap = SignUtils.buildParamMap(request);
+        TreeMap<String, String[]> paramMap = SignHelper.getRequestParams(request);
+        byte[] bytes = SignHelper.getRequestBody(request);
 
         //4.生成签名
-        String newSign = SignUtils.createSign(paramMap, timestampL, "secret");
+        String newSign = SignHelper.createSign(paramMap, bytes, timestampL, "secret");
 
         //5.签名校验
         if (!sign.equalsIgnoreCase(newSign)) {

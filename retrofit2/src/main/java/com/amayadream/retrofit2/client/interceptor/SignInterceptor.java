@@ -1,6 +1,6 @@
 package com.amayadream.retrofit2.client.interceptor;
 
-import com.amayadream.retrofit2.util.SignUtils;
+import com.amayadream.retrofit2.util.SignHelper;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -24,10 +24,11 @@ public class SignInterceptor implements Interceptor{
         Long timestamp = Instant.now().getEpochSecond();
 
         //2.获取paramMap
-        TreeMap<String, String[]> paramMap = SignUtils.buildParamMap(request);
+        TreeMap<String, String[]> paramMap = SignHelper.getRequestParams(request);
+        byte[] bytes = SignHelper.getRequestBody(request);
 
         //3.获取签名
-        String sign = SignUtils.createSign(paramMap, timestamp, "secret");
+        String sign = SignHelper.createSign(paramMap, bytes, timestamp, "secret");
 
         //4.添加签名头
         Request.Builder builder = request.newBuilder()
