@@ -70,7 +70,8 @@ public class SignHelper {
             }
             bytes = IOUtils.toByteArray(in);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warn("[SignHelper]读取请求body出错", e);
+            return null;
         } finally {
             if (in != null) {
                 IOUtils.closeQuietly(in);
@@ -142,10 +143,10 @@ public class SignHelper {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, String[]> entry : params.entrySet()) {
             String[] values = entry.getValue();
-            for (int i = 0; i < values.length; i++) {
+            for (String value : values) {
                 sb.append(entry.getKey());
                 sb.append("=");
-                sb.append(values[i]);
+                sb.append(value);
                 sb.append("&");
             }
         }
