@@ -12,6 +12,7 @@
         <module>retrofit2</module>
         <module>design-pattern</module>
         <module>sharding</module>
+        <module>i18n</module>
     </modules>
 
     <properties>
