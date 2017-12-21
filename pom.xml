@@ -13,8 +13,6 @@
         <module>design-pattern</module>
         <module>sharding</module>
         <module>i18n</module>
-        <module>spring-cloud-config-server</module>
-        <module>spring-cloud-config-client</module>
     </modules>
 
     <properties>
